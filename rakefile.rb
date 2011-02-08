@@ -107,6 +107,12 @@ namespace :specs do
     t.spec_files = FileList['spec/yaml*_spec.rb']
     t.spec_opts << @spec_opts
   end
+
+  desc "Curl functional specs"
+  Spec::Rake::SpecTask.new :curl do |t|
+    t.spec_files = FileList['spec/curl*_spec.rb']
+    t.spec_opts << @spec_opts
+  end
 end
 
 namespace :albacore do  
