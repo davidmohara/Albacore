@@ -107,6 +107,12 @@ namespace :specs do
     t.spec_opts << @spec_opts
   end
 
+  desc "MSDeploy function specs"
+  Spec::Rake::SpecTask.new :msdeploy do |t|
+    t.spec_files = FileList['spec/msdeploy*_spec.rb']
+    t.spec_opts << @spec_opts
+  end
+
   desc "FluenMigrator functional specs"
   Spec::Rake::SpecTask.new :fluentmigrator do |t|
     t.spec_files = FileList['spec/fluentmigrator*_spec.rb']
