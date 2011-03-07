@@ -2,7 +2,7 @@ require 'albacore/msdeploy'
 
 class MSDeployTestData
   
-  attr_accessor :source, :source_type, :msdeploybuild_path, :verb, :target, :target_type
+  attr_accessor :source, :source_type, :msdeploybuild_path, :verb, :destination, :destination_type
   
   def initialize()
     @source_type = 'contentPath'
@@ -13,9 +13,9 @@ class MSDeployTestData
   end
   
   def setup_output
-    @target_type = 'package'
-    @target = File.join(File.dirname(__FILE__), "TestSolution", "TestSolution", "bin", "#{@config_mode}", "deploy.zip")
-    File.delete @target if File.exist? @target
+    @destination_type = 'package'
+    @destination = File.join(File.dirname(__FILE__), "TestSolution", "TestSolution", "bin", "#{@config_mode}", "deploy.zip")
+    File.delete @destination if File.exist? @destination
   end
   
   def msdeploy(path_to_msdeploy=nil)
