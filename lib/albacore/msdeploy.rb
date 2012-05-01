@@ -35,6 +35,14 @@ class MSDeploy
     @user_creds = ",userName=#{user},password=#{pwd}"
   end
 
+  def pre_sync(command)
+    @pre_sync = "-preSync:#{command}"
+  end
+
+  def post_sync(command)
+    @post_sync = "-postSync:#{command}"
+  end
+
   def skip_dir(dir)
     skips << { :objectName => 'dirPath', :absolutePath => dir }
   end
@@ -57,6 +65,8 @@ class MSDeploy
     last = params.pop
     last = last + ',tempAgent=true' unless @temp_agent.nil?
     params << last
+    params << @pre_sync unless @pre_sync.nil?
+    params << @post_sync unless @post_sync.nil?
 
     skips.each{|hash|
       skip = hash.flatten
